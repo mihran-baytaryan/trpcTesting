@@ -1,32 +1,27 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const client_1 = require("@trpc/client");
+import { createTRPCProxyClient, httpBatchLink } from "../node_modules/@trpc/client/dist/index";
 //import type { appRouter } from "../server/routers/index"
-const safe_eval_1 = __importDefault(require("safe-eval"));
+// import safeEval from '../node_modules/safe-eval/index.js'
 //const URL = (<HTMLInputElement>document.getElementById('url')).value;
 // safe-eval lets you execute JavaScript code without having to use the much discouraged and feared upon eval().
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('made it here');
     const btn = document.getElementById('button');
     btn.addEventListener('click', () => {
         console.log('clicked');
         const clientURL = document.getElementById('url').value; // a string, eg: 'http://localhost:3001/trpc'
-        const client = (0, client_1.createTRPCProxyClient)({
+        const client = createTRPCProxyClient({
             links: [
-                (0, client_1.httpBatchLink)({
+                httpBatchLink({
                     url: clientURL, // this would be the url from user eg: http://localhost:3001/trpc  (assuming it is listening)
                 }),
             ],
         });
         const request = document.getElementById('request').value; // a string, eg: 'client.users.create.mutate({ name: "John", age: 12 })'
         console.log(request);
-        (0, safe_eval_1.default)(request);
+        eval(request);
     });
 });
 /*
+  HELLLLLLOOO TS
  // This is the trpc query for dummies. assuming we have 5 text fields
 
  async function trpcQueryForDummies() {

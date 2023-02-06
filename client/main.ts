@@ -1,12 +1,12 @@
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/client"
+import { createTRPCProxyClient, httpBatchLink } from "../node_modules/@trpc/client/dist/index.js"; 
+declare var require: any
 //import type { appRouter } from "../server/routers/index"
-import safeEval from 'safe-eval'
+// import safeEval from '../node_modules/safe-eval/index.js'
 
 //const URL = (<HTMLInputElement>document.getElementById('url')).value;
 
- // safe-eval lets you execute JavaScript code without having to use the much discouraged and feared upon eval().
+// safe-eval lets you execute JavaScript code without having to use the much discouraged and feared upon eval().
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('made it here')
 
     const btn = document.getElementById('button');
   
@@ -24,11 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const request = (<HTMLInputElement>document.getElementById('request')).value; // a string, eg: 'client.users.create.mutate({ name: "John", age: 12 })'
       console.log(request)
-      safeEval(request); 
+      eval(request); 
     })
 }) 
 
 /*
+  HELLLLLLOOO TS
  // This is the trpc query for dummies. assuming we have 5 text fields
 
  async function trpcQueryForDummies() {
